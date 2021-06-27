@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="four columns" v-for="(curso, index) in CursoInfo" :key="index">
+    <div class="four columns" v-for="(curso, index) in listCourse" :key="index">
       <div class="card" id="{{curso.id}}">
         <img :src="curso.image" class="imagen-curso u-full-width">
         <div class="info-card">
@@ -9,7 +9,7 @@
           <img src="img/estrellas.png">
           <p class="precio">{{ curso.precio }} <span class="u-pull-right ">$15</span></p>
           <a href="" class="u-full-width button-primary button input agregar-carrito"
-             @click.prevent="$emit('agregarCurso', index, curso)">Agregar Al Carrito</a>
+             @click.prevent="addTocart(curso)">Agregar Al Carrito</a>
         </div>
       </div>
     </div>
@@ -17,10 +17,17 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex';
+
 export default {
   name: 'CursoTarjeta',
   props: {
-    CursoInfo: Array,
+    listCourse: Array,
+    course: { type: Object, required: true },
+  },
+  methods: {
+    ...mapActions(['addTocart'])
   }
 }
 </script>

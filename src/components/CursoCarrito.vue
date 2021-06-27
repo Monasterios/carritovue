@@ -12,12 +12,12 @@
         <th>Borrar</th>
       </tr>
 
-      <CursoCarritoRow v-for="(items, index) in list" :Cursofilas="items" :Preciobase="items.cantidad" :indice="index" :key="index" v-bind="$attrs"/>
+      <CursoCarritoRow v-for="(items, index) in list" :Cursofilas="items" :Preciobase="items.cantidad" :index="index" :key="index" v-bind="$attrs"/>
 
       </thead>
       <tbody></tbody>
     </table>
-    <a href="#" id="vaciar-carrito" class="button u-full-width" @click="$emit('vaciarCarrito')">Vaciar Carrito</a>
+    <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
   </div>
 
 </template>
