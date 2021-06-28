@@ -1,15 +1,15 @@
 <template>
   <div class="row">
-    <div class="four columns" v-for="(curso, index) in listCourse" :key="index">
-      <div class="card" id="{{curso.id}}">
-        <img :src="curso.image" class="imagen-curso u-full-width">
+    <div class="four columns" v-for="(card, index) in listCourse" :key="index">
+      <div class="card" id="{{card.id}}">
+        <img :src="card.image" class="imagen-curso u-full-width">
         <div class="info-card">
-          <h4>{{ curso.titulo }}</h4>
-          <p>{{ curso.nombre }}</p>
+          <h4>{{ card.title }}</h4>
+          <p>{{ card.name }}</p>
           <img src="img/estrellas.png">
-          <p class="precio">{{ curso.precio }} <span class="u-pull-right ">$15</span></p>
+          <p class="precio">{{ card.price }} <span class="u-pull-right ">$15</span></p>
           <a href="" class="u-full-width button-primary button input agregar-carrito"
-             @click.prevent="addTocart(curso)">Agregar Al Carrito</a>
+             @click.prevent="addTocart(card)">Agregar Al Carrito</a>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
   name: 'CursoTarjeta',
   props: {
     listCourse: Array,
-    course: { type: Object, required: true },
+    card: { type: Object, required: true },
   },
   methods: {
     ...mapActions(['addTocart'])

@@ -12,7 +12,7 @@
         <th>Borrar</th>
       </tr>
 
-      <CursoCarritoRow v-for="(items, index) in list" :Cursofilas="items" :Preciobase="items.cantidad" :index="index" :key="index" v-bind="$attrs"/>
+      <CursoCarritoRow v-for="(items, index) in list" :courseRow="items" :basePrice="items.amount" :index="index" :key="index" v-bind="$attrs"/>
 
       </thead>
       <tbody></tbody>

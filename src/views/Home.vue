@@ -10,10 +10,10 @@
             <li class="submenu">
               <div style="display: flex;">
                 <img src="img/cart.png" id="img-carrito" height="25">
-                <span v-if="Cursos_Cantidad !== 0" class="badge">{{ Cursos_Cantidad }}</span>
+                <span v-if="this.badgeAmount !== 0" class="badge">{{ badgeAmount }}</span>
               </div>
 
-              <CursoCarrito :list="this.shoppingCart" @eliminarCurso="eliminarCurso" @vaciarCarrito="vaciarCarrito"/>
+              <CursoCarrito :list="this.shoppingCart"/>
             </li>
           </ul>
         </div>
@@ -21,7 +21,7 @@
     </div>
   </header>
 
-  <CursoHero v-model:title="nuevotexto"/>
+  <CursoHero />
   <CursoAcercade/>
 
   <div id="lista-cursos" class="container">
@@ -46,25 +46,7 @@ import CursoAcercade from "@/components/CursoAcercade";
 import CursoFooter from "@/components/CursoFooter";
 
 export default {
-  data() {
-    return {
-      listCourse: [
-        {
-          id: 1,
-          titulo: 'HTML5, CSS3, JavaScript',
-          nombre: 'Juan Pedro',
-          image: 'img/curso1.jpg',
-          precio: 240,
-          cantidad: 1
-        },
-        {id: 2, titulo: 'JavaScript', nombre: 'Maria casas', image: 'img/curso2.jpg', precio: 40, cantidad: 1},
-        {id: 3, titulo: 'Typscript', nombre: 'Daniel Martinez', image: 'img/curso3.jpg', precio: 120, cantidad: 1},
-      ],
-    }
-  },
-
   components: {
-
     CursoFooter,
     CursoAcercade,
     CursoHero,
@@ -73,13 +55,9 @@ export default {
 
   },
   computed: {
-     ...mapGetters(['shoppingCart'])
-  },
-  methods: {
-    // filtra curso
-    filtrarCurso: function (palabraClave) {
-      this.Cursos_Info = this.Cursos_Info.filter(curso => curso.titulo.includes(palabraClave));
-    },
+     ...mapGetters(['listCourse']),
+     ...mapGetters(['shoppingCart']),
+     ...mapGetters(['badgeAmount'])
   }
 }
 
