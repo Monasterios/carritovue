@@ -8,7 +8,7 @@ export default createStore({
             {id: 3, title: 'Typscript', name: 'Daniel Martinez', image: 'img/curso3.jpg', price: 120, amount: 1},
         ],
         shoppingCart: [],
-        badgeAmount: null
+        badgeAmount: 0
     },
     getters: {
         shoppingCart: store => store.shoppingCart,
@@ -21,6 +21,9 @@ export default createStore({
         },
         removeFromCart(context, { index, courseRow }) {
             context.commit("removeFromCart", { index, courseRow })
+        },
+        emptyCart(context){
+            context.commit('emptyCart')
         }
     },
     mutations: {
@@ -37,6 +40,10 @@ export default createStore({
                 state.shoppingCart.splice(index, 1)
               }
             }
+        },
+        emptyCart(state){
+            state.shoppingCart = []
+            state.badgeAmount = 0
         }
     },
     modules: {}

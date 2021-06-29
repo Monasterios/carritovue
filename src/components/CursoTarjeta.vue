@@ -1,7 +1,5 @@
 <template>
-  <div class="row">
-    <div class="four columns" v-for="(card, index) in listCourse" :key="index">
-      <div class="card" id="{{card.id}}">
+      <div class="card" v-for="(card, index) in listCourse" :key="index" id="{{card.id}}" style="margin: 10px;">
         <img :src="card.image" class="imagen-curso u-full-width">
         <div class="info-card">
           <h4>{{ card.title }}</h4>
@@ -12,8 +10,6 @@
              @click.prevent="addTocart(card)">Agregar Al Carrito</a>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -24,7 +20,7 @@ export default {
   name: 'CursoTarjeta',
   props: {
     listCourse: Array,
-    card: { type: Object, required: true },
+    card: Object,
   },
   methods: {
     ...mapActions(['addTocart'])

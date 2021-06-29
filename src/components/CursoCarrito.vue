@@ -17,12 +17,13 @@
       </thead>
       <tbody></tbody>
     </table>
-    <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+    <a href="#" id="vaciar-carrito" class="button u-full-width" @click.prevent="emptyCart">Vaciar Carrito</a>
   </div>
 
 </template>
 <script>
 
+import { mapActions } from 'vuex';
 import CursoCarritoRow from "./CursoCarritoRow";
 
 export default {
@@ -32,6 +33,9 @@ export default {
   },
   props: {
     list: Array,
+  },
+  methods: {
+    ...mapActions(['emptyCart'])
   }
 }
 </script>

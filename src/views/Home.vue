@@ -21,12 +21,24 @@
     </div>
   </header>
 
-  <CursoHero />
+  <CursoHero/>
   <CursoAcercade/>
 
   <div id="lista-cursos" class="container">
-    <h1 id="encabezado" class="encabezado">Cursos En Línea </h1>
-    <CursoTarjeta :listCourse="this.listCourse"/>
+<div class="row">
+  <h1 id="encabezado" class="encabezado">Cursos En Línea </h1>
+</div>
+    <div class="row">
+      <div class="three columns">
+         <h4 style="margin-bottom: 20px;">SEARCH:</h4>
+        <CursoFiltros />
+      </div>
+      <div class="nine columns">
+        <div style="display: flex;">
+          <CursoTarjeta :listCourse="this.listCourse"/>
+        </div>
+      </div>
+    </div>
   </div>
 
   <CursoFooter/>
@@ -36,7 +48,7 @@
 <script>
 
 // store
-import  { mapGetters } from 'vuex'
+import {mapGetters} from 'vuex'
 
 // @ components
 import CursoCarrito from "@/components/CursoCarrito";
@@ -44,9 +56,11 @@ import CursoTarjeta from "@/components/CursoTarjeta";
 import CursoHero from "@/components/CursoHero";
 import CursoAcercade from "@/components/CursoAcercade";
 import CursoFooter from "@/components/CursoFooter";
+import CursoFiltros from "@/components/CursoFiltros";
 
 export default {
   components: {
+    CursoFiltros,
     CursoFooter,
     CursoAcercade,
     CursoHero,
@@ -55,9 +69,9 @@ export default {
 
   },
   computed: {
-     ...mapGetters(['listCourse']),
-     ...mapGetters(['shoppingCart']),
-     ...mapGetters(['badgeAmount'])
+    ...mapGetters(['listCourse']),
+    ...mapGetters(['shoppingCart']),
+    ...mapGetters(['badgeAmount'])
   }
 }
 
