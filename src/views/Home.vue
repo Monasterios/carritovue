@@ -31,7 +31,23 @@
     <div class="row">
       <div class="three columns">
          <h4 style="margin-bottom: 20px;">SEARCH:</h4>
-        <CursoFiltros v-model:titulo="filterTitle"/>
+        <form action="#" id="busqueda" method="post" class="formulario">
+          <div>
+            <label for="titulocurso"><b>by title</b></label>
+            <input style="color:black;" class="u-full-width" type="text" placeholder="title course" v-model="filterTitle" id="titulocurso">
+          </div>
+          <div>
+            <label for="prices"><b>by name</b></label>
+            <input style="color:black;" class="u-full-width" type="text" v-model="filterName" placeholder="Person name" id="instructor">
+          </div>
+
+          <div>
+            <label for="prices"><b>by price</b></label>
+            <input id="prices" type="range" min="0" ref="slider" max="250" step="1" v-model="filterRange"
+                   style="width: 100%; margin-bottom: 0;">
+            ${{ filterRange }}
+          </div>
+        </form>
       </div>
       <div class="nine columns">
         <div style="display: flex;">
@@ -56,16 +72,16 @@ import CursoTarjeta from "@/components/CursoTarjeta";
 import CursoHero from "@/components/CursoHero";
 import CursoAcercade from "@/components/CursoAcercade";
 import CursoFooter from "@/components/CursoFooter";
-import CursoFiltros from "@/components/CursoFiltros";
 
 export default {
   data(){
    return {
-     filterTitle: ''
+     filterTitle: '',
+     filterName: '',
+     filterRange: 20
    }
   },
   components: {
-    CursoFiltros,
     CursoFooter,
     CursoAcercade,
     CursoHero,
@@ -77,11 +93,15 @@ export default {
     ...mapGetters(['listCourse', 'shoppingCart', 'badgeAmount','filterTitle']),
 
     filtering() {
-      if(this.filterTitle){
-        return this.listCourse.filter((curso) => curso.title.includes(this.filterTitle))
-      } else {
-        return this.listCourse
-      }
+        return this.filterByTitle(this.filterByName(this.listCourse))
+    }
+  },
+  methods: {
+    filterByTitle: function (listCourse) {
+      return listCourse.filter(course => course.title.includes(this.filterTitle))
+    },
+    filterByName: function (listCourse) {
+      return listCourse.filter(course => course.name.includes(this.filterName));
     }
   }
 }
